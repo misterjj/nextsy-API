@@ -33,10 +33,7 @@ class Category
     #[ORM\Column]
     private ?string $descriptionEn = null;
 
-    #[ORM\JoinTable(name: 'products_categories')]
-    #[ORM\JoinColumn(name: 'category_id', referencedColumnName: 'id')]
-    #[ORM\InverseJoinColumn(name: 'product_id', referencedColumnName: 'id')]
-    #[ORM\ManyToMany(targetEntity: Product::class, mappedBy: 'categories')]
+    #[ORM\ManyToMany(targetEntity: Product::class, mappedBy:"categories")]
     /** @var Collection<int, Product> $products */
     private iterable $products;
 

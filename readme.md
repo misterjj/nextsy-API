@@ -36,9 +36,9 @@ Avant de commencer, assurez-vous d'avoir les éléments suivants installés :
 
     Cela démarrera un conteneur MySQL avec le mot de passe root défini sur `root`.
 
-4. **Configurer le fichier `.env.dev`**
+4. **Configurer le fichier `.env.local`**
 
-   Assurez-vous que votre fichier `.env.dev` contient la configuration de base de données suivante :
+   Assurez-vous que votre fichier `.env.local` contient la configuration de base de données suivante :
 
     ```dotenv
     DATABASE_URL="mysql://root:root@127.0.0.1:3306/nextsy?serverVersion=8.4.32&charset=utf8mb4"
@@ -76,3 +76,10 @@ Avant de commencer, assurez-vous d'avoir les éléments suivants installés :
     ```
 
     L'API sera accessible à l'adresse indiquée dans la console (généralement `https://127.0.0.1:8000`).
+
+## Si les assets sont manquants
+
+    ```bash
+    symfony console asset:install
+    ```
+    
