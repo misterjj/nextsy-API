@@ -13,11 +13,6 @@ use App\Controller\AuthController;
 #[ORM\Entity]
 #[ApiResource(
     operations: [
-        new Post(
-            uriTemplate: '/auth/login',
-            name: 'login',
-            controller: AuthController::class
-        )
     ],
 )]
 class User implements UserInterface, PasswordAuthenticatedUserInterface

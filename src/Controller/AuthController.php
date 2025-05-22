@@ -22,28 +22,5 @@ class AuthController extends AbstractController
 
     public function __invoke(Request $request): JsonResponse
     {
-        die(json_encode("ici"));exit();
-        $data = json_decode($request->getContent(), true);
-
-        if (!isset($data['username']) || !isset($data['password'])) {
-            throw new HttpException(400, 'Missing username or password');
-        }
-
-        $username = $data['username'];
-        $password = $data['password'];
-
-        $user = $this->security->getUser();
-
-        die(json_encode($user));exit();
-
-        if (!$user instanceof UserInterface || !$this->userPasswordHasher->isPasswordValid($user, $password)) {
-            throw new HttpException(401, 'Invalid credentials');
-        }
-
-
-        return new JsonResponse([
-            'token' => $this->jwtManager->create($user),
-            'username' => $user->getUsername()
-        ]);
     }
 }

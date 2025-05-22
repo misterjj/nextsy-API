@@ -21,8 +21,8 @@ security:
                 failure_handler: lexik_jwt_authentication.handler.authentication_failure
             jwt: ~
     access_control:
-        - { path: ^/api/auth/login2, roles: PUBLIC_ACCESS }
-        - { path: /api, roles: PUBLIC_ACCESS }
+        - { path: ^/api/auth/login, roles: PUBLIC_ACCESS } # New rule, placed before general /api
+        - { path: ^/api, roles: IS_AUTHENTICATED_FULLY } # Modified rule
         - { path: ^/,       roles: IS_AUTHENTICATED_FULLY }
 
 when@test:
