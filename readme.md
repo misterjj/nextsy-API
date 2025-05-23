@@ -66,8 +66,17 @@ Avant de commencer, assurez-vous d'avoir les éléments suivants installés :
     ```bash
     symfony serve:stop
     ```
+   
+2. **Créer un utilisateur admin**
 
-2.  **Démarrer le serveur Symfony**
+   Utilisez la commande suivante pour créer un utilisateur admin :
+
+    ```bash
+    php bin/console app:create-user-direct admin@nextsy.com admin --admin
+    ```
+
+
+3. **Démarrer le serveur Symfony**
 
     Utilisez la commande suivante pour démarrer le serveur de développement :
 
