@@ -14,13 +14,16 @@ class CategoryFixtures extends Fixture
     {
         $faker = Factory::create();
 
-        $cat = new Category();
-        $cat->setNameFr($faker->name());
-        $cat->setNameEn($faker->name());
-        $cat->setDescriptionFr($faker->name());
-        $cat->setDescriptionEn($faker->name());
+        for ($i = 0; $i < 10; $i++) {
+            $cat = new Category();
+            $randomWord = $faker->numberBetween(2, 6);
+            $cat->setNameFr($faker->sentence($randomWord));
+            $cat->setNameEn($faker->sentence($randomWord));
+            $cat->setDescriptionFr($faker->paragraph(2, false));
+            $cat->setDescriptionEn($faker->paragraph(2, false));
 
-        $manager->persist($cat);
+            $manager->persist($cat);
+        }
 
         $manager->flush();
     }
