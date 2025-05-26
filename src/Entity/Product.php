@@ -15,7 +15,12 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity]
-#[ApiResource]
+#[ApiResource(
+    paginationEnabled: true,
+    paginationItemsPerPage: 30,
+    paginationMaximumItemsPerPage: 100,
+    paginationType: 'page'
+)]
 class Product
 {
     #[ORM\Id, ORM\GeneratedValue, ORM\Column]
