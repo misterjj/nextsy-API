@@ -59,15 +59,13 @@ Avant de commencer, assurez-vous d'avoir les éléments suivants installés :
 
     Cette commande créera les tables nécessaires dans votre base de données.
 
-## Démarrage du serveur
-
-1. **Arrêtez tout serveur symfony qui pourrait être en cours d'execution**
+6. **Générer les fixtures**
 
     ```bash
-    symfony serve:stop
+    symfony console doctrine:fixtures:load --no-interaction
     ```
-   
-2. **Créer un utilisateur admin**
+
+7. **Créer un utilisateur admin**
 
    Utilisez la commande suivante pour créer un utilisateur admin :
 
@@ -75,8 +73,17 @@ Avant de commencer, assurez-vous d'avoir les éléments suivants installés :
     php bin/console app:create-user-direct admin@nextsy.com admin --admin
     ```
 
+   Cette commande ajoute de fausse données dans la base de donnée.
 
-3. **Démarrer le serveur Symfony**
+## Démarrage du serveur
+
+1. **Arrêtez tout serveur symfony qui pourrait être en cours d'execution**
+
+    ```bash
+    symfony serve:stop
+    ```
+
+2. **Démarrer le serveur Symfony**
 
     Utilisez la commande suivante pour démarrer le serveur de développement :
 
