@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Doctrine\Orm\Filter\OrderFilter;
+use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
@@ -16,42 +18,54 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity]
 #[ApiResource(
+    normalizationContext: ['groups' => ['product:read']],
+    denormalizationContext: ['groups' => ['product:write']],
     paginationEnabled: true,
     paginationItemsPerPage: 30,
     paginationMaximumItemsPerPage: 100,
     paginationType: 'page'
 )]
+#[ApiFilter(OrderFilter::class, properties: ['id', 'price', 'stock', 'nameFr', 'nameEn'])]
 class Product
 {
     #[ORM\Id, ORM\GeneratedValue, ORM\Column]
+    #[Groups(['product:read'])]
     private ?int $id = null;
 
     #[ORM\Column(type: 'decimal', precision: 10, scale: 2)]
     #[Assert\NotBlank]
     #[Assert\Positive]
+    #[Groups(['product:read', 'product:write'])]
     private float $price;
 
     #[ORM\Column(type: 'integer')]
     #[Assert\NotBlank]
     #[Assert\PositiveOrZero]
+    #[Groups(['product:read', 'product:write'])]
     private int $stock = 0;
 
     #[ORM\Column(nullable: true)]
+    #[Groups(['product:read', 'product:write'])]
     private ?string $image = null;
 
     #[ORM\Column]
+    #[Groups(['product:read', 'product:write'])]
     private ?string $nameFr = null;
 
     #[ORM\Column]
+    #[Groups(['product:read', 'product:write'])]
     private ?string $nameEn = null;
 
     #[ORM\Column]
+    #[Groups(['product:read', 'product:write'])]
     private ?string $descriptionFr = null;
 
     #[ORM\Column]
+    #[Groups(['product:read', 'product:write'])]
     private ?string $descriptionEn = null;
 
     #[ORM\ManyToMany(targetEntity: Category::class, inversedBy:"products")]
+    #[Groups(['product:read', 'product:write'])]
     #[Assert\NotBlank]
     /** @var Collection<int, Category> $categories */
     private iterable $categories;

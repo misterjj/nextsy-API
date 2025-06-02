@@ -16,9 +16,9 @@ class CategoryFixtures extends Fixture
 
         for ($i = 0; $i < 10; $i++) {
             $cat = new Category();
-            $randomWord = $faker->numberBetween(2, 6);
-            $cat->setNameFr($faker->sentence($randomWord));
-            $cat->setNameEn($faker->sentence($randomWord));
+            $randomWord = $faker->numberBetween(1, 2);
+            $cat->setNameFr($faker->words($randomWord, true));
+            $cat->setNameEn($faker->words($randomWord, true));
             $cat->setDescriptionFr($faker->paragraph(2, false));
             $cat->setDescriptionEn($faker->paragraph(2, false));
 

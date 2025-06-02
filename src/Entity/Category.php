@@ -15,22 +15,30 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity]
-#[ApiResource]
+#[ApiResource(
+    normalizationContext: ['groups' => ['category:read']],
+    denormalizationContext: ['groups' => ['category:write']]
+)]
 class Category
 {
     #[ORM\Id, ORM\GeneratedValue, ORM\Column]
+    #[Groups(['category:read', 'product:read'])]
     private ?int $id = null;
 
     #[ORM\Column]
+    #[Groups(['category:read', 'category:write', 'product:read'])]
     private ?string $nameFr = null;
 
     #[ORM\Column]
+    #[Groups(['category:read', 'category:write', 'product:read'])]
     private ?string $nameEn = null;
 
     #[ORM\Column]
+    #[Groups(['category:read', 'category:write', 'product:read'])]
     private ?string $descriptionFr = null;
 
     #[ORM\Column]
+    #[Groups(['category:read', 'category:write', 'product:read'])]
     private ?string $descriptionEn = null;
 
     #[ORM\ManyToMany(targetEntity: Product::class, mappedBy:"categories")]
