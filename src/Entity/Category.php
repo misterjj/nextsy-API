@@ -17,7 +17,11 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity]
 #[ApiResource(
     normalizationContext: ['groups' => ['category:read']],
-    denormalizationContext: ['groups' => ['category:write']]
+    denormalizationContext: ['groups' => ['category:write']],
+    paginationEnabled: true,
+    paginationItemsPerPage: 30,
+    paginationMaximumItemsPerPage: 100,
+    paginationType: 'page'
 )]
 class Category
 {

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use ApiPlatform\Doctrine\Orm\Filter\OrderFilter;
+use ApiPlatform\Doctrine\Orm\Filter\RangeFilter;
+use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
 use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
@@ -26,6 +28,13 @@ use Symfony\Component\Validator\Constraints as Assert;
     paginationType: 'page'
 )]
 #[ApiFilter(OrderFilter::class, properties: ['id', 'price', 'stock', 'nameFr', 'nameEn'])]
+#[ApiFilter(RangeFilter::class, properties: ['price', 'stock'])]
+#[ApiFilter(SearchFilter::class, properties: [
+    'id' => 'exact',
+    'nameFr' => 'ipartial',
+    'nameEn' => 'ipartial',
+    'categories.id' => 'exact',
+])]
 class Product
 {
     #[ORM\Id, ORM\GeneratedValue, ORM\Column]
